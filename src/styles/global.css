@@ -22,13 +22,3 @@ body {
   color: var(--text-default);
 }
 
-.container{
-    max-width: 98rem;
-    background-color: aqua;
-    margin: 0 auto;
-}
-
-.content{
-    background-color: red;
-    margin: 3.2rem;
-}
