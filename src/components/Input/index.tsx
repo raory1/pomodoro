@@ -5,11 +5,11 @@ type InputProps = {
   label?: string;
 } & React.ComponentProps<'input'>;
 
-export function Input({ id, type, label, ...rest }: InputProps) {
+export function Input({ id, type, label, ...props }: InputProps) {
   return (
     <>
       {label && <label htmlFor={id}>{label}</label>}
-      <input disabled id={id} type={type} className={styles.input} {...rest} />
+      <input disabled id={id} type={type} className={styles.input} {...props} />
     </>
   );
 }
