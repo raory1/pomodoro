@@ -8,6 +8,7 @@ import { Input } from './components/Input';
 import { CycleTimeline } from './components/CycleTimeline';
 import { Button } from './components/Button';
 import { IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
+import { Footer } from './components/Footer';
 
 export function App() {
   return (
@@ -35,11 +36,17 @@ export function App() {
             <CycleTimeline />
           </div>
           <div className="formRow">
-            <Button title={"Start focusing"} variant='default' icon={<IconPlayerPlay stroke={1.5} />} />
-            <Button title={"Give up"} variant='alert' icon={<IconPlayerStop stroke={1.5} />} />
+            <Button
+              title={'Start focusing'}
+              variant="default"
+              icon={<IconPlayerPlay stroke={1.5} />}
+            />
+            {/* <Button title={"Give up"} variant='alert' icon={<IconPlayerStop stroke={1.5} />} /> */}
           </div>
         </form>
       </Container>
+
+      <Footer />
     </>
   );
 }
