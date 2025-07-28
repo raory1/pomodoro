@@ -13,9 +13,9 @@ export function Menu() {
       <a href="#" className={styles.menuLink}>
         <IconHistory stroke={1} />
       </a>
-      <a href="#" className={styles.menuLink}>
+      {/* <a href="#" className={styles.menuLink}>
         <IconClockHour4Filled />
-      </a>
+      </a> */}
     </nav>
   );
 }
