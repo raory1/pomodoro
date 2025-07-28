@@ -1,4 +1,4 @@
-import { IconClockHour4Filled, IconHistory, IconHome, IconHomeFilled, IconSettings } from '@tabler/icons-react';
+import { IconClockHour4Filled, IconHistory, IconHome, IconSettings } from '@tabler/icons-react';
 import styles from './styles.module.css';
 
 export function Menu() {
