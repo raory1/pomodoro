@@ -9,11 +9,13 @@ import { CycleTimeline } from './components/CycleTimeline';
 import { Button } from './components/Button';
 import { IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { Footer } from './components/Footer';
+import { ToggleTheme } from './components/ToggleTheme';
 
 export function App() {
   return (
     <>
       <Container>
+        <ToggleTheme />
         <Logo />
         <Menu />
       </Container>
