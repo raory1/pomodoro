@@ -1,14 +1,11 @@
-import type { TaskModel } from './TaskStateModel';
+import type { TaskStateModel } from './TaskStateModel';
 
-export type TaskStateModel = {
-  tasks: TaskModel[];
-  secondsRemaining: number;
-  formattedSecondsRemaining: string;
-  activeTask: TaskModel | null;
-  currentCycle: number;
-  config: { // time for each cycle
-    work: number;
-    shortBreak: number;
-    longBreak: number;
-  };
+export type TaskModel = {
+  id: string;
+  name: string;
+  duration: number;
+  startDate: number;
+  endDate: number;
+  interruptDate: number;
+  type: keyof TaskStateModel['config'];
 };
