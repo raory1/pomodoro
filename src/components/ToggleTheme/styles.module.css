@@ -13,7 +13,6 @@
   align-items: center;
   font-size: 1.5em;
   cursor: pointer;
-  color: var(--primary);
 }
 
 .toggle + label::before {
@@ -37,6 +36,11 @@
   transition: background-color 250ms ease-in-out, transform 250ms ease-in-out;
 }
 
+.toggle:checked + label::before {
+  background-color: var(--secondary);
+}
+
 .toggle:checked + label::after {
   transform: translateX(100%);
+  background-color: var(--primary);
 }

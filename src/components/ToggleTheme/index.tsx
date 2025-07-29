@@ -4,7 +4,11 @@ import styles from './styles.module.css';
 type AvaliableThemes = 'dark' | 'light';
 
 export function ToggleTheme() {
-  const [theme, setTheme] = useState<AvaliableThemes>('dark');
+  const [theme, setTheme] = useState<AvaliableThemes>(() => {
+    const storageTheme =
+      (localStorage.getItem('theme') as AvaliableThemes) || 'dark';
+    return storageTheme;
+  });
 
   function handleThemeChange() {
     setTheme((prevTheme) => {
@@ -12,10 +16,14 @@ export function ToggleTheme() {
       return nextTheme;
     });
   }
-  document.documentElement.setAttribute('data-theme', theme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   return (
     <div className={styles.container}>
-      {theme}
       <input
         type="checkbox"
         id="check"
