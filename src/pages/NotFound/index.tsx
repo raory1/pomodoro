@@ -1,17 +1,25 @@
 import { Container } from '../../components/Container';
+import { GenericHtml } from '../../components/GenericHtml';
+import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 
 export function NotFound() {
   return (
     <MainTemplate>
       <Container>
-        <h1>404</h1>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim ullam
-          illum perspiciatis delectus recusandae est exercitationem dicta et
-          aliquam ad autem voluptatum, accusantium numquam rem officia accusamus
-          doloribus fugit tenetur?r
-        </span>
+        <GenericHtml>
+          <Heading>404 - Page Not Found</Heading>
+          <p>
+            Oops! It looks like the page you’re trying to access doesn’t exist.
+            But don’t worry, you’re not lost in space (yet). You can safely
+            return to the <a href="/">main page</a>.
+          </p>
+          <p>
+            If you believe this page should exist, just get in{' '}
+            <a href="#">contact</a>. Otherwise, use the menu to get back on
+            track.
+          </p>
+        </GenericHtml>
       </Container>
     </MainTemplate>
   );
