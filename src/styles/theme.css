@@ -20,8 +20,8 @@
   --accent-light: #3c04f6;
   --accent-dark: #4109fb;
 
-  --link-color: #10b981;
-  --link-hover: #0b8a60;
+  --link-color: #9b84e6;
+  --link-hover: #5f42a8;
 
   --success: #22c55e;
   --warning: #eab308;
@@ -56,4 +56,6 @@
 
   --text-default: #0b0811;
   --text-muted: #625c6d;
+
+  --text-over-primary: #f5f4fb;
 }
