@@ -9,7 +9,7 @@ export function Input({ id, type, label, ...props }: InputProps) {
   return (
     <>
       {label && <label htmlFor={id}>{label}</label>}
-      <input disabled id={id} type={type} className={styles.input} {...props} />
+      <input id={id} type={type} className={styles.input} {...props} />
     </>
   );
 }
