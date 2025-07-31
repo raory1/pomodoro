@@ -1,10 +1,12 @@
-export function getNextCycleType(nextCycle: number) {
-  if (nextCycle % 2 === 0 && nextCycle % 8 === 0) {
+import type { TaskModel } from '../../models/TaskModel';
+
+export function getNextCycleType(currentCycle: number): TaskModel['type'] {
+  if (currentCycle % 8 === 0) {
     return 'longBreak';
   }
-  if (nextCycle % 2 === 0) {
-    return 'work';
-  } else {
+  if (currentCycle % 2 === 0) {
     return 'shortBreak';
+  } else {
+    return 'work';
   }
 }
