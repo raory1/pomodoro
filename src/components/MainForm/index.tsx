@@ -2,12 +2,18 @@ import { IconPlayerPlay } from '@tabler/icons-react';
 import { Button } from '../Button';
 import { CycleTimeline } from '../CycleTimeline';
 import { Input } from '../Input';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
+import { getNextCycle } from '../utils/getNextCycle';
+import { getNextCycleType } from '../utils/getNextCycleType';
+import { formatSecondsToMinutes } from '../utils/formatSecondsToMinutes';
 
 export function MainForm() {
-  const { setState } = useTaskContext();
+  const { state, setState } = useTaskContext();
+
+  const nextCycle = getNextCycle(state.currentCycle);
+  const nextCycleType = getNextCycleType(nextCycle);
 
   const taskNameInput = useRef<HTMLInputElement>(null);
   function handleStartNewTask(e: React.FormEvent<HTMLFormElement>) {
@@ -24,11 +30,11 @@ export function MainForm() {
     const newTask: TaskModel = {
       id: crypto.randomUUID(),
       name: taskName,
-      duration: 1,
+      duration: state.config[nextCycleType],
       startDate: Date.now(),
       endDate: null,
       interruptDate: null,
-      type: 'work',
+      type: nextCycleType,
     };
 
     const secondsRemaining = newTask.duration * 60;
@@ -38,9 +44,9 @@ export function MainForm() {
         ...prev,
         tasks: [...prev.tasks, newTask],
         secondsRemaining,
-        formattedSecondsRemaining: '00:00',
+        formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
         activeTask: newTask,
-        currentCycle: 1,
+        currentCycle: nextCycle,
       };
     });
   }
