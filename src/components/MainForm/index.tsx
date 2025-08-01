@@ -1,4 +1,4 @@
-import { IconPlayerPlay } from '@tabler/icons-react';
+import { IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { Button } from '../Button';
 import { CycleTimeline } from '../CycleTimeline';
 import { Input } from '../Input';
@@ -14,6 +14,8 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
+
+  const hasTaskActive = state.activeTask;
 
   const taskNameInput = useRef<HTMLInputElement>(null);
   function handleStartNewTask(e: React.FormEvent<HTMLFormElement>) {
@@ -60,6 +62,7 @@ export function MainForm() {
           required={false}
           placeholder="Type your task"
           ref={taskNameInput}
+          disabled={!!hasTaskActive}
           // value={taskName}
           // onChange={(e) => setTaskName(e.target.value)}
         />
@@ -71,11 +74,22 @@ export function MainForm() {
       )}
 
       <div className="formRow">
-        <Button
-          title={'Start focusing'}
-          variant="default"
-          icon={<IconPlayerPlay stroke={1.5} />}
-        />
+        {hasTaskActive ? (
+          <Button
+            title={'Give up'}
+            variant="alert"
+            type='button'
+            icon={<IconPlayerStop stroke={1.5} />}
+          />
+        ) : (
+          <Button
+            title={'Start focusing'}
+            variant="default"
+            type='submit'
+            icon={<IconPlayerPlay stroke={1.5} />}
+          />
+        )}
+
         {/* <Button title={"Give up"} variant='alert' icon={<IconPlayerStop stroke={1.5} />} /> */}
       </div>
     </form>
