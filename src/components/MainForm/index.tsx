@@ -64,9 +64,12 @@ export function MainForm() {
           // onChange={(e) => setTaskName(e.target.value)}
         />
       </div>
-      <div className="formRow">
-        <CycleTimeline />
-      </div>
+      {state.currentCycle != 0 && (
+        <div className="formRow">
+          <CycleTimeline />
+        </div>
+      )}
+
       <div className="formRow">
         <Button
           title={'Start focusing'}
