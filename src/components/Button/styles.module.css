@@ -24,10 +24,8 @@
 
 .default {
   background-color: var(--primary);
-  color: var(--text-over-primary);
 }
 
 .alert {
   background-color: var(--error);
-  color: var(--text-over-secondary);
 }
