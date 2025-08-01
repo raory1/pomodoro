@@ -53,6 +53,22 @@ export function MainForm() {
     });
   }
 
+  function handleInterruptTask() {
+    setState((prev) => {
+      return {
+        ...prev,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        activeTask: null,
+        tasks: prev.tasks.map((task) => {
+          if (prev.activeTask && prev.activeTask.id === task.id) {
+            return { ...task, interruptDate: Date.now() };
+          } else return task;
+        }),
+      };
+    });
+  }
+
   return (
     <form onSubmit={handleStartNewTask} className="form">
       <div className="formRow">
@@ -78,19 +94,20 @@ export function MainForm() {
           <Button
             title={'Give up'}
             variant="alert"
-            type='button'
+            type="button"
             icon={<IconPlayerStop stroke={1.5} />}
+            onClick={handleInterruptTask}
+            key={'btn_stop'}
           />
         ) : (
           <Button
             title={'Start focusing'}
             variant="default"
-            type='submit'
+            type="submit"
             icon={<IconPlayerPlay stroke={1.5} />}
+            key={'btn_submit'}
           />
         )}
-
-        {/* <Button title={"Give up"} variant='alert' icon={<IconPlayerStop stroke={1.5} />} /> */}
       </div>
     </form>
   );
