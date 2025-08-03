@@ -10,8 +10,6 @@ export function CycleTimeline() {
 
   return (
     <div className={styles.container}>
-      <span>Cycles:</span>
-
       <div className={styles.cycle}>
         {cycleStep.map((_, index) => {
           const nextCycle = getNextCycle(index);
