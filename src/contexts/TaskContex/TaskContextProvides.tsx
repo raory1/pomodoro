@@ -18,8 +18,16 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
     console.log('Remaining Time:', remainingTime);
 
     if (remainingTime <= 0) {
+      dispatch({
+        type: 'COMPLETE_TASK',
+      });
       worker.terminate();
       console.log('Worker done processing');
+    } else {
+      dispatch({
+        type: 'COUNT_DOWN',
+        payload: { secondsRemaining: remainingTime },
+      });
     }
   });
 

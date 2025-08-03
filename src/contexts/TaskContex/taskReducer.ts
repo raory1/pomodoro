@@ -23,6 +23,7 @@ export function taskReducer(
         currentCycle: nextCycle,
       };
     }
+
     case TaskActionTypes.INTERRUPT_TASK: {
       return {
         ...state,
@@ -38,8 +39,35 @@ export function taskReducer(
         }),
       };
     }
+
+    case TaskActionTypes.COMPLETE_TASK: {
+      return {
+        ...state,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        activeTask: null,
+        tasks: state.tasks.map((task) => {
+          if (state.activeTask && state.activeTask.id === task.id) {
+            return { ...task, endDate: Date.now() };
+          } else {
+            return task;
+          }
+        }),
+      };
+    }
+
     case TaskActionTypes.RESET_STATE: {
       return state;
+    }
+
+    case TaskActionTypes.COUNT_DOWN: {
+      return {
+        ...state,
+        secondsRemaining: action.payload.secondsRemaining,
+        formattedSecondsRemaining: formatSecondsToMinutes(
+          action.payload.secondsRemaining
+        ),
+      };
     }
   }
 
