@@ -17,6 +17,24 @@ export function MainForm() {
 
   const hasTaskActive = state.activeTask;
 
+  const stageMessages = {
+    work: hasTaskActive ? (
+      <span>Time to focus</span>
+    ) : (
+      <span>Next you'll focus for {state.config.work}m</span>
+    ),
+    shortBreak: hasTaskActive ? (
+      <span>Let's take a break!</span>
+    ) : (
+      <span>Next you'll rest for {state.config.shortBreak}m</span>
+    ),
+    longBreak: hasTaskActive ? (
+      <span>Take a break, but come back in {state.config.longBreak}m</span>
+    ) : (
+      <span>You'll rest for {state.config.longBreak}m</span>
+    ),
+  };
+
   const taskNameInput = useRef<HTMLInputElement>(null);
   function handleStartNewTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -59,6 +77,10 @@ export function MainForm() {
           // value={taskName}
           // onChange={(e) => setTaskName(e.target.value)}
         />
+      </div>
+      <div className="formRow">
+        {state.activeTask && stageMessages[state.activeTask.type]}
+        {!state.activeTask && stageMessages[nextCycleType]}
       </div>
       {state.currentCycle != 0 && (
         <div className="formRow">
