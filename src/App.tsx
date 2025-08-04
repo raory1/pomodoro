@@ -4,11 +4,18 @@ import './styles/global.css';
 import { Home } from './pages/Home';
 import { TaskContextProvider } from './contexts/TaskContex/TaskContextProvides';
 import { ToastContainer, Zoom } from 'react-toastify';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { NotFound } from './pages/NotFound';
 
 export function App() {
   return (
     <TaskContextProvider>
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
       <ToastContainer
         position="top-center"
         autoClose={7000}
