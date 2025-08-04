@@ -8,6 +8,7 @@ import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 import { getNextCycle } from '../utils/getNextCycle';
 import { getNextCycleType } from '../utils/getNextCycleType';
 import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
+import { showToastify } from '../../adapters/toastifyAdapter';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -43,7 +44,7 @@ export function MainForm() {
 
     const taskName = taskNameInput.current.value.trim();
     if (!taskName) {
-      alert('Digite o nome da tarefa');
+      showToastify.error('Digite o nome da tarefa');
       return;
     }
 
