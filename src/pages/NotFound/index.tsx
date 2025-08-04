@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
@@ -12,7 +13,7 @@ export function NotFound() {
           <p>
             Oops! It looks like the page you’re trying to access doesn’t exist.
             But don’t worry, you’re not lost in space (yet). You can safely
-            return to the <a href="/">main page</a>.
+            return to the <Link to="/">main page</Link>.
           </p>
           <p>
             If you believe this page should exist, just get in{' '}

@@ -1,13 +1,14 @@
 import { IconHourglassEmpty } from '@tabler/icons-react';
 import styles from './styles.module.css';
+import { Link } from 'react-router';
 
 export function Logo() {
   return (
     <div className={styles.logo}>
-      <a href="#" className={styles.logoLink}>
+      <Link to="/" className={styles.logoLink}>
         <IconHourglassEmpty />
         <span>pomo timer</span>
-      </a>
+      </Link>
     </div>
   );
 }
