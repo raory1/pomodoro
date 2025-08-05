@@ -1,21 +1,15 @@
 import './styles/theme.css';
 import './styles/global.css';
 
-import { Home } from './pages/Home';
 import { TaskContextProvider } from './contexts/TaskContex/TaskContextProvides';
 import { ToastContainer, Zoom } from 'react-toastify';
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { NotFound } from './pages/NotFound';
+import { MainRouter } from './routers/router';
 
 export function App() {
   return (
     <TaskContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <MainRouter/>
+      
       <ToastContainer
         position="top-center"
         autoClose={7000}
