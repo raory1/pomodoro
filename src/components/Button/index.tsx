@@ -1,13 +1,13 @@
 import styles from './styles.module.css';
 
 type ButtonProps = {
-  title?: string;
+  label?: string;
   variant?: 'default' | 'alert';
   icon: React.ReactNode;
 } & React.ComponentProps<'button'>;
 
 export function Button({
-  title,
+  label,
   variant = 'alert',
   icon,
   ...props
@@ -16,7 +16,7 @@ export function Button({
     <>
       <button className={`${styles.button} ${styles[variant]}`} {...props}>
         {icon}
-        <span>{title}</span>
+        <span>{label}</span>
       </button>
     </>
   );

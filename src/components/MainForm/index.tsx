@@ -94,20 +94,22 @@ export function MainForm() {
       <div className="formRow">
         {hasTaskActive ? (
           <Button
-            title={'Give up'}
+            label={'Give up'}
             variant="alert"
             type="button"
             icon={<IconPlayerStop stroke={1.5} />}
             onClick={handleInterruptTask}
             key={'btn_stop'}
+            aria-label="Stop focus cycle"
           />
         ) : (
           <Button
-            title={'Start focusing'}
+            label={'Start focusing'}
             variant="default"
             type="submit"
             icon={<IconPlayerPlay stroke={1.5} />}
             key={'btn_submit'}
+            aria-label="Start focus cycle"
           />
         )}
       </div>
