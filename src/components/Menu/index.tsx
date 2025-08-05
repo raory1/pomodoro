@@ -14,7 +14,7 @@ export function Menu() {
         <IconHome stroke={1} />
       </Link>
       <Link
-        to="/settings"
+        to="/settings/"
         className={styles.menuLink}
         aria-label="Go to settings page"
         title="Settings"
@@ -22,7 +22,7 @@ export function Menu() {
         <IconSettings stroke={1} />
       </Link>
       <Link
-        to="/history"
+        to="/history/"
         className={styles.menuLink}
         aria-label="Go to history page"
         title="History"
