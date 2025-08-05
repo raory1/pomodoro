@@ -3,13 +3,27 @@ import { initialState } from './initialTaskState';
 import { TaskContext } from './TaskContext';
 import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
+import type { TaskStateModel } from '../../models/TaskStateModel';
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
 };
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-  const [state, dispatch] = useReducer(taskReducer, initialState);
+  const [state, dispatch] = useReducer(taskReducer, initialState, () => {
+    const storageState = localStorage.getItem('state');
+    if (storageState === null) return initialState;
+    else {
+      const parsedStorageState = JSON.parse(storageState) as TaskStateModel;
+      return {
+        ...parsedStorageState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+      };
+    }
+    return initialState;
+  });
 
   const worker = TimerWorkerManager.getInstance();
 
@@ -32,12 +46,15 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   });
 
   useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state));
+
     if (!state.activeTask) {
-      console.log('Worker finished no active task');
       worker.terminate();
     } else {
       worker.postMessage(state);
     }
+
+    document.title = `${state.formattedSecondsRemaining} | pomo timer`;
   }, [worker, state]);
 
   return (
