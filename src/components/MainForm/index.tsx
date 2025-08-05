@@ -18,6 +18,7 @@ export function MainForm() {
 
   const hasTaskActive = state.activeTask;
 
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
   const stageMessages = {
     work: hasTaskActive ? (
       <span>Time to focus</span>
@@ -75,6 +76,7 @@ export function MainForm() {
           placeholder="Type your task"
           ref={taskNameInput}
           disabled={!!hasTaskActive}
+          defaultValue={lastTaskName}
           // value={taskName}
           // onChange={(e) => setTaskName(e.target.value)}
         />
