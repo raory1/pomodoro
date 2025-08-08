@@ -1,0 +1,17 @@
+.tableContainer {
+  overflow-x: auto;
+}
+
+.tableContainer table {
+  width: 100%;
+  min-width: 64rem;
+  font-size: 1.6rem;
+  border-collapse: collapse;
+}
+
+.tableContainer th,
+.tableContainer td {
+  text-align: left;
+  padding: 0.8rem;
+  border-bottom: 0.2rem solid var(--gray-800);
+}

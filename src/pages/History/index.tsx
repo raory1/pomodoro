@@ -4,7 +4,7 @@ import { Container } from '../../components/Container';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 
-import style from './styles.module.css';
+import styles from './styles.module.css';
 
 export function History() {
   return (
@@ -13,8 +13,35 @@ export function History() {
         <Heading>History</Heading>
       </Container>
 
-      <Container>table</Container>
-      
+      <Container>
+        <div className={styles.tableContainer}>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 20 }).map(() => {
+                return (
+                  <tr>
+                    <td>asdasdasdadad</td>
+                    <td>Do the laundry</td>
+                    <td>18/05/2020</td>
+                    <td>Completed</td>
+                    <td>Long rest</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </Container>
+
       <Container>
         <Button
           variant="alert"
