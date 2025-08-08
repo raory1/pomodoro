@@ -13,11 +13,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <>
+    <div className={styles.container}>
       <button className={`${styles.button} ${styles[variant]}`} {...props}>
         {icon}
         <span>{label}</span>
       </button>
-    </>
+    </div>
   );
 }
