@@ -5,8 +5,11 @@ import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 
 import styles from './styles.module.css';
+import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 
 export function History() {
+  const { state } = useTaskContext();
+
   return (
     <MainTemplate>
       <Container>
@@ -18,26 +21,24 @@ export function History() {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
+                {/* <th>ID</th> */}
                 <th>Name</th>
                 <th>Date</th>
                 <th>Status</th>
                 <th>Type</th>
               </tr>
             </thead>
-            <tbody>
-              {Array.from({ length: 20 }).map(() => {
-                return (
+            <tbody>{state.tasks.map((task)=>{
+                  return (
                   <tr>
-                    <td>asdasdasdadad</td>
-                    <td>Do the laundry</td>
-                    <td>18/05/2020</td>
-                    <td>Completed</td>
-                    <td>Long rest</td>
+                    {/* <td>{task.id}</td> */}
+                    <td>{task.name}</td>
+                    <td>{new Date(task.startDate).toISOString()}</td>
+                    <td>{task.interruptDate}</td>
+                    <td>{task.type}</td>
                   </tr>
                 );
-              })}
-            </tbody>
+            })}</tbody>
           </table>
         </div>
       </Container>
