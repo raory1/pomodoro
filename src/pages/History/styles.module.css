@@ -15,3 +15,7 @@
   padding: 0.8rem;
   border-bottom: 0.2rem solid var(--gray-800);
 }
+
+.tableContainer p {
+  text-align: center;
+}

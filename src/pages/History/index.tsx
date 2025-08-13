@@ -8,15 +8,22 @@ import styles from './styles.module.css';
 import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 import { formatDate } from '../../components/utils/formatDate';
 import { getTaskStatus } from '../../components/utils/getTaskStatus';
+import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
 
 export function History() {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
+  const hasTasks = state.tasks.length > 0;
 
   const taskTypeMap = {
     work: 'Focus',
     shortBreak: 'Short break',
     longBreak: 'Long break',
   };
+
+  function handleDeleteHistory() {
+    if (!confirm('Delete all history?')) return;
+    dispatch({ type: TaskActionTypes.RESET_STATE });
+  }
 
   return (
     <MainTemplate>
@@ -26,43 +33,53 @@ export function History() {
 
       <Container>
         <div className={styles.tableContainer}>
-          <table>
-            <thead>
-              <tr>
-                {/* <th>ID</th> */}
-                <th>Name</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.tasks
-                .map((task) => {
-                  return (
-                    <tr>
-                      {/* <td>{task.id}</td> */}
-                      <td>{task.name}</td>
-                      <td>{formatDate(task.startDate)}</td>
-                      <td>{getTaskStatus(task, state.activeTask)}</td>
-                      <td>{taskTypeMap[task.type]}</td>
-                    </tr>
-                  );
-                })
-                .reverse()}
-            </tbody>
-          </table>
+          {hasTasks ? (
+            <table>
+              <thead>
+                <tr>
+                  {/* <th>ID</th> */}
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {state.tasks
+                  .map((task) => {
+                    return (
+                      <tr key={task.id}>
+                        {/* <td>{task.id}</td> */}
+                        <td>{task.name}</td>
+                        <td>{formatDate(task.startDate)}</td>
+                        <td>{getTaskStatus(task, state.activeTask)}</td>
+                        <td>{taskTypeMap[task.type]}</td>
+                      </tr>
+                    );
+                  })
+                  .reverse()}
+              </tbody>
+            </table>
+          ) : (
+            <p>
+              Seems like you don't have any task. Start a new one to see it
+              here.
+            </p>
+          )}
         </div>
       </Container>
 
-      <Container>
-        <Button
-          variant="alert"
-          icon={<IconTrash />}
-          aria-label="Clear all tasks history"
-          title="Clear history"
-        />
-      </Container>
+      {hasTasks && (
+        <Container>
+          <Button
+            variant="alert"
+            icon={<IconTrash />}
+            aria-label="Clear all tasks history"
+            title="Clear history"
+            onClick={handleDeleteHistory}
+          />
+        </Container>
+      )}
     </MainTemplate>
   );
 }
