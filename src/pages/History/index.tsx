@@ -9,6 +9,7 @@ import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 import { formatDate } from '../../components/utils/formatDate';
 import { getTaskStatus } from '../../components/utils/getTaskStatus';
 import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
+import { showConfirmDialog } from '../../components/utils/confirmDialog';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -20,9 +21,14 @@ export function History() {
     longBreak: 'Long break',
   };
 
-  function handleDeleteHistory() {
-    if (!confirm('Delete all history?')) return;
-    dispatch({ type: TaskActionTypes.RESET_STATE });
+  async function handleDeleteHistory() {
+    const isConfirmed = await showConfirmDialog(
+      'Delete all task history?',
+      'This action cannot be undone.'
+    );
+
+    if (!isConfirmed) return;
+    else dispatch({ type: TaskActionTypes.RESET_STATE });
   }
 
   return (
