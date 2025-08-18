@@ -6,4 +6,5 @@ export const showToastify = {
   info: (message: string) => toast.info(message),
   warn: (message: string) => toast.warn(message),
   warning: (message: string) => toast.warning(message),
+  dismiss: () => toast.dismiss(),
 };
