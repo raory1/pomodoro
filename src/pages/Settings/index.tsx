@@ -25,7 +25,7 @@ export function Settings() {
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     showToastify.dismiss();
-    
+
     const workTime = Number(workTimeInputRef.current?.value);
     const shortBreakTime = Number(shortBreakTimeInputRef.current?.value);
     const longBreakTime = Number(longBreakTimeInputRef.current?.value);
@@ -72,7 +72,7 @@ export function Settings() {
               required={true}
               placeholder="Type your task"
               defaultValue={state.config.shortBreak}
-              // type="number"
+              type="number"
               ref={shortBreakTimeInputRef}
             />
           </div>
@@ -84,7 +84,7 @@ export function Settings() {
               required={true}
               placeholder="Type your task"
               defaultValue={state.config.longBreak}
-              // type="number"
+              type="number"
               ref={longBreakTimeInputRef}
             />
           </div>
