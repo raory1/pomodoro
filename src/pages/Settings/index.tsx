@@ -9,6 +9,7 @@ import { MainTemplate } from '../../templates/MainTemplate';
 import style from './styles.module.css';
 import { useRef } from 'react';
 import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
+import { showToastify } from '../../adapters/toastifyAdapter';
 
 export function Settings() {
   const { state } = useTaskContext();
@@ -17,12 +18,31 @@ export function Settings() {
   const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
   const longBreakTimeInputRef = useRef<HTMLInputElement>(null);
 
+  function isValidRange(value: number) {
+    return value >= 1 && value <= 99;
+  }
+
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const workTime = workTimeInputRef.current?.value;
-    const shortBreakTime = shortBreakTimeInputRef.current?.value;
-    const longBreakTime = longBreakTimeInputRef.current?.value;
-    console.log(workTime, shortBreakTime, longBreakTime);
+    showToastify.dismiss();
+    
+    const workTime = Number(workTimeInputRef.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInputRef.current?.value);
+    const longBreakTime = Number(longBreakTimeInputRef.current?.value);
+
+    if (isNaN(workTime) || isNaN(shortBreakTime) || isNaN(longBreakTime)) {
+      showToastify.error('Only numeric values are allowed.');
+      return;
+    }
+
+    if (
+      !isValidRange(workTime) ||
+      !isValidRange(shortBreakTime) ||
+      !isValidRange(longBreakTime)
+    ) {
+      showToastify.error('Value must be between 1 and 99.');
+      return;
+    }
   }
 
   return (
