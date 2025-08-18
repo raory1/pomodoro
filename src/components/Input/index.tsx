@@ -7,9 +7,9 @@ type InputProps = {
 
 export function Input({ id, type, label, ...props }: InputProps) {
   return (
-    <>
+    <div className={styles.container}>
       {label && <label htmlFor={id}>{label}</label>}
       <input id={id} type={type} className={styles.input} {...props} />
-    </>
+    </div>
   );
 }
