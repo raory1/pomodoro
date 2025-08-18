@@ -3,16 +3,15 @@ import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Heading } from '../../components/Heading';
 import { Input } from '../../components/Input';
-import { initialState } from '../../contexts/TaskContex/initialTaskState';
 import { MainTemplate } from '../../templates/MainTemplate';
 
-import style from './styles.module.css';
 import { useRef } from 'react';
 import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 import { showToastify } from '../../adapters/toastifyAdapter';
+import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
 
 export function Settings() {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const workTimeInputRef = useRef<HTMLInputElement>(null);
   const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
@@ -43,6 +42,16 @@ export function Settings() {
       showToastify.error('Value must be between 1 and 99.');
       return;
     }
+
+    dispatch({
+      type: TaskActionTypes.CHANGE_SETTINGS,
+      payload: {
+        work: workTime,
+        shortBreak: shortBreakTime,
+        longBreak: longBreakTime,
+      },
+    });
+    showToastify.sucess('Settings updated.');
   }
 
   return (
