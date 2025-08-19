@@ -5,12 +5,16 @@ import { Heading } from '../../components/Heading';
 import { Input } from '../../components/Input';
 import { MainTemplate } from '../../templates/MainTemplate';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTaskContext } from '../../contexts/TaskContex/useTaskContext';
 import { showToastify } from '../../adapters/toastifyAdapter';
 import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
 
 export function Settings() {
+  useEffect(() => {
+    document.title = 'Settings | pomo timer';
+  }, []);
+
   const { state, dispatch } = useTaskContext();
 
   const workTimeInputRef = useRef<HTMLInputElement>(null);

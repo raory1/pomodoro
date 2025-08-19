@@ -3,8 +3,13 @@ import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
+import { useEffect } from 'react';
 
 export function NotFound() {
+  useEffect(() => {
+    document.title = 'Page not found | pomo timer';
+  }, []);
+
   return (
     <MainTemplate>
       <Container>

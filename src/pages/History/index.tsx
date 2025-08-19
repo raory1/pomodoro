@@ -10,6 +10,7 @@ import { formatDate } from '../../components/utils/formatDate';
 import { getTaskStatus } from '../../components/utils/getTaskStatus';
 import { TaskActionTypes } from '../../contexts/TaskContex/taskActions';
 import { showConfirmDialog } from '../../components/utils/confirmDialog';
+import { useEffect } from 'react';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -21,6 +22,11 @@ export function History() {
     longBreak: 'Long break',
   };
 
+  useEffect(() => {
+      document.title = 'History | pomo timer';
+    }, []);
+  
+    
   async function handleDeleteHistory() {
     const isConfirmed = await showConfirmDialog(
       'Delete all task history?',
